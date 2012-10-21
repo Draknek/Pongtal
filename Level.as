@@ -11,7 +11,8 @@ package
 		
 		public function Level ()
 		{
-			add(new Player());
+			//add(new Player());
+			add(new Ball());
 		}
 		
 		public override function update (): void
