@@ -19,7 +19,7 @@ package
 			y = FP.height*0.5;
 			
 			vx = 1 * speed;
-			vy = FP.choose(1, -1) * (1 + Math.random()) * speed*0.5;
+			//vy = FP.choose(1, -1) * (1 + Math.random()) * speed*0.5;
 			
 			var image:Image = Image.createCircle(r, 0xFFFFFF);
 			

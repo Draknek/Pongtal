@@ -7,10 +7,11 @@ package
 	
 	public class Level extends World
 	{
-		//[Embed(source="images/bg.png")] public static const BgGfx: Class;
+		[Embed(source="images/bg.png")] public static const BgGfx: Class;
 		
 		public function Level ()
 		{
+			addGraphic(new Backdrop(BgGfx, true, true))
 			//add(new Player());
 			add(new Ball());
 		}
