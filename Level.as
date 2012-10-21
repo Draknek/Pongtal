@@ -11,8 +11,9 @@ package
 		
 		public function Level ()
 		{
-			addGraphic(new Backdrop(BgGfx, true, true))
-			//add(new Player());
+			addGraphic(new Backdrop(BgGfx, true, true));
+			add(new Player(-1));
+			add(new Player(1));
 			add(new Ball());
 		}
 		
