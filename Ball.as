@@ -7,6 +7,8 @@ package
 	
 	public class Ball extends Entity
 	{
+		[Embed(source="images/ball.png")] public static const Gfx: Class;
+		
 		public var vx: Number = 0;
 		public var vy: Number = 0;
 		
@@ -19,9 +21,13 @@ package
 			y = FP.height*0.5;
 			
 			vx = 1 * speed;
-			//vy = FP.choose(1, -1) * (1 + Math.random()) * speed*0.5;
+			vy = FP.choose(1, -1) * (1 + Math.random()) * speed*0.5;
 			
-			var image:Image = Image.createCircle(r, 0xFFFFFF);
+			var image:Image = new Image(Gfx);
+			image.blend = "add";
+			image.color = 0xFFFF00;
+			image.scale = 0.5;
+			image.smooth = true;
 			
 			image.centerOrigin();
 			
