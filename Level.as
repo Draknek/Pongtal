@@ -9,13 +9,14 @@ package
 	{
 		[Embed(source="images/bg.png")] public static const BgGfx: Class;
 		
+		public var bg:Entity;
 		public var ball:Ball;
 		public var p1:Player;
 		public var p2:Player;
 		
 		public function Level ()
 		{
-			addGraphic(new Backdrop(BgGfx, true, true));
+			bg = addGraphic(new Backdrop(BgGfx, true, true));
 			add(ball = new Ball());
 			add(p1 = new Player(-1));
 			add(p2 = new Player(1));
@@ -30,7 +31,10 @@ package
 		
 		public override function render (): void
 		{
-			super.render();
+			bg.render();
+			p1.render();
+			p2.render();
+			ball.render();
 		}
 	}
 }
