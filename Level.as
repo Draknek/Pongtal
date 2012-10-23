@@ -27,6 +27,8 @@ package
 			ball.update();
 			p1.update();
 			p2.update();
+			p1.doPortaling();
+			p2.doPortaling();
 		}
 		
 		public override function render (): void

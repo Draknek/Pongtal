@@ -15,6 +15,8 @@ package
 		
 		public var color:uint;
 		
+		public var controller:Controller;
+		
 		public function Player (side:int)
 		{
 			x = FP.width*0.5 + side*(FP.width*0.5 - 40);
@@ -30,6 +32,8 @@ package
 			y += side*20;
 			
 			initPortal();
+			
+			controller = (side < 0) ? new AIController(this) : new KeyboardController(Key.UP, Key.DOWN);
 		}
 		
 		public function get other ():Player {
@@ -38,6 +42,23 @@ package
 		}
 		
 		public override function update (): void
+		{
+			vy = 3 * controller.getDirection();
+			
+			y += vy;
+			
+			var padding:Number = 6;
+			
+			if (y < padding) {
+				y = padding;
+				vy = 0;
+			} else if (y + height > FP.height - padding) {
+				y = FP.height - height - padding;
+				vy = 0;
+			}
+		}
+		
+		public function doPortaling (): void
 		{
 			var level:Level = world as Level;
 			var ball:Ball = level.ball;

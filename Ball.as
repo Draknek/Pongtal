@@ -38,8 +38,8 @@ package
 			x = oldX = FP.width*0.5;
 			y = oldY = FP.height*0.5;
 			
-			vx = 1 * speed;
-			//vy = FP.choose(1, -1) * (1 + Math.random()) * speed*0.5;
+			vx = -1 * speed;
+			vy = FP.choose(1, -1) * (1 + Math.random()) * speed*0.5;
 		}
 		
 		public override function update (): void
