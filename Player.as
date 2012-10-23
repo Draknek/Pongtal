@@ -56,6 +56,48 @@ package
 				y = FP.height - height - padding;
 				vy = 0;
 			}
+			
+			var level:Level = world as Level;
+			var ball:Ball = level.ball;
+			
+			doBounce(ball, x, y);
+			doBounce(ball, x, y + height);
+		}
+		
+		public static function doBounce (ball:Ball, _x:Number, _y:Number):void
+		{
+			var dx:Number = ball.x - _x;
+			var dy:Number = ball.y - _y;
+			
+			var dzSq:Number = dx*dx + dy*dy;
+			
+			if (dzSq > ball.r*ball.r) return;
+			
+			var dz:Number = Math.sqrt(dzSq);
+			
+			dx /= dz;
+			dy /= dz;
+			
+			var overlap:Number = ball.r - dz;
+			
+			ball.x += dx * overlap;
+			ball.y += dy * overlap;
+			
+			ball.oldX = ball.x;
+			ball.oldY = ball.y;
+			
+			var speedTowards:Number = -dx*ball.vx - dy*ball.vy;
+			
+			if (speedTowards < 0) return;
+			
+			ball.vx += dx * speedTowards * 2;
+			ball.vy += dy * speedTowards * 2;
+			
+			var dir:int = (_x > FP.width*0.5) ? 1 : -1;
+			
+			if (ball.vx * dir >= 0) {
+				ball.vx *= -1;
+			}
 		}
 		
 		public function doPortaling (): void
@@ -72,6 +114,10 @@ package
 					ball.y += other.y - y;
 					ball.oldX = ball.x;
 					ball.oldY = ball.y;
+					
+					var dir:int = (other.x < x) ? 1 : -1;
+					
+					ball.vx += dir * 0.5;
 				}
 			}
 		}

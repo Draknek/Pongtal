@@ -23,14 +23,16 @@ package
 			spawn();
 			
 			var image:Image = new Image(Gfx);
-			image.blend = "add";
+			//image.blend = "add";
 			image.color = 0xFFFF00;
-			image.scale = 0.5;
+			//image.scale = 0.5;
 			image.smooth = true;
 			
 			image.centerOrigin();
 			
 			graphic = image;
+			
+			setHitbox(r*2, r*2, r, r)
 		}
 		
 		public function spawn ():void
@@ -38,12 +40,19 @@ package
 			x = oldX = FP.width*0.5;
 			y = oldY = FP.height*0.5;
 			
-			vx = -1 * speed;
-			vy = FP.choose(1, -1) * (1 + Math.random()) * speed*0.5;
+			vx = 1 * speed;
+			vy = FP.choose(1, -1) * (1 + Math.random()) * speed*0.3;
 		}
 		
 		public override function update (): void
 		{
+			var minSpeed:Number = 1.5;
+			
+			if (vx > -minSpeed && vx < minSpeed) {
+				vx = (vx < 0) ? -1 : 1;
+				vx *= minSpeed;
+			}
+			
 			oldX = x;
 			oldY = y;
 			x += vx;
