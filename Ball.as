@@ -18,10 +18,10 @@ package
 		public var r:Number = 10;
 		public var speed:Number = 4;
 		
+		public var spawning:Boolean = false;
+		
 		public function Ball ()
 		{
-			spawn();
-			
 			var image:Image = new Image(Gfx);
 			//image.blend = "add";
 			image.color = 0xFFFF00;
@@ -32,7 +32,9 @@ package
 			
 			graphic = image;
 			
-			setHitbox(r*2, r*2, r, r)
+			setHitbox(r*2, r*2, r, r);
+			
+			spawn();
 		}
 		
 		public function spawn ():void
@@ -42,12 +44,26 @@ package
 			
 			vx = 1 * speed;
 			vy = FP.choose(1, -1) * (1 + Math.random()) * speed*0.3;
+			
+			spawning = true;
+			
+			var spawnTime:int = 30;
+			
+			Image(graphic).alpha = 0.0;
+			
+			FP.tween(graphic, {alpha: 1.0}, spawnTime, function ():void {
+				spawning = false;
+			});
 		}
 		
 		public override function update (): void
 		{
-			Audio.loop.volume = 0.5;
+			Audio.loop.volume = 0.5 * Image(graphic).alpha;
 			Audio.loop.pan = (x / FP.width) * 2 - 1;
+			
+			if (spawning) {
+				return;
+			}
 			
 			var minSpeed:Number = 1.5;
 			
