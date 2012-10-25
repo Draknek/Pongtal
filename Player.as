@@ -120,6 +120,8 @@ package
 					var dir:int = (other.x < x) ? 1 : -1;
 					
 					ball.vx += dir * 0.5;
+					
+					Audio.play("portal");
 				}
 			}
 		}
