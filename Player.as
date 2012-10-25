@@ -37,7 +37,7 @@ package
 			
 			initPortal();
 			
-			controller = (side < 0) ? new AIController(this) : new KeyboardController(Key.UP, Key.DOWN);
+			controller = (side < 0) ? new KeyboardController(Key.W, Key.S) : new KeyboardController(Key.UP, Key.DOWN);
 			
 			scoreText = new Text("0", x - side * (width) - 50, 20, {align: "center", color: 0x0, size: 24, width: 100});
 			scoreText.relative = false;
