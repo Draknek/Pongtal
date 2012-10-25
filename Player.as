@@ -17,6 +17,10 @@ package
 		
 		public var controller:Controller;
 		
+		public var score:int = 0;
+		
+		public var scoreText:Text;
+		
 		public function Player (side:int)
 		{
 			x = FP.width*0.5 + side*(FP.width*0.5 - 40);
@@ -34,6 +38,11 @@ package
 			initPortal();
 			
 			controller = (side < 0) ? new AIController(this) : new KeyboardController(Key.UP, Key.DOWN);
+			
+			scoreText = new Text("0", x - side * (width) - 50, 20, {align: "center", color: 0x0, size: 24, width: 100});
+			scoreText.relative = false;
+			
+			addGraphic(scoreText);
 		}
 		
 		public function get other ():Player {
@@ -43,6 +52,8 @@ package
 		
 		public override function update (): void
 		{
+			scoreText.text = score + "";
+			
 			vy = 3 * controller.getDirection();
 			
 			y += vy;

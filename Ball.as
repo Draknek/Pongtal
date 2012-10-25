@@ -58,7 +58,12 @@ package
 			x += vx;
 			y += vy;
 			
-			if (x + r*2 < 0 || x - r*2 > FP.width) {
+			if (x + r*2 < 0) {
+				Level(world).p2.score++;
+				spawn();
+				return;
+			} else if (x - r*2 > FP.width) {
+				Level(world).p1.score++;
 				spawn();
 				return;
 			}
