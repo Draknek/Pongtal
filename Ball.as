@@ -66,9 +66,11 @@ package
 			if (y - r < 0) {
 				y = r;
 				vy *= -1;
+				Audio.play("bounce");
 			} else if (y + r > FP.height) {
 				y = FP.height - r;
 				vy *= -1;
+				Audio.play("bounce");
 			}
 		}
 	}

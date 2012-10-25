@@ -73,6 +73,8 @@ package
 			
 			if (dzSq > ball.r*ball.r) return;
 			
+			Audio.play("bounce");
+			
 			var dz:Number = Math.sqrt(dzSq);
 			
 			dx /= dz;
