@@ -46,6 +46,9 @@ package
 		
 		public override function update (): void
 		{
+			Audio.loop.volume = 0.5;
+			Audio.loop.pan = (x / FP.width) * 2 - 1;
+			
 			var minSpeed:Number = 1.5;
 			
 			if (vx > -minSpeed && vx < minSpeed) {

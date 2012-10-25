@@ -21,6 +21,7 @@ package
 			add(p1 = new Player(-1));
 			add(p2 = new Player(1));
 			
+			Audio.init();
 			Audio.play("start");
 		}
 		
