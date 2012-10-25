@@ -80,10 +80,12 @@ package
 			if (x + r*2 < 0) {
 				Level(world).p2.score++;
 				spawn();
+				Audio.play("point", "blue");
 				return;
 			} else if (x - r*2 > FP.width) {
 				Level(world).p1.score++;
 				spawn();
+				Audio.play("point", "orange");
 				return;
 			}
 			
