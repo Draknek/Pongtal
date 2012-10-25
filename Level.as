@@ -20,6 +20,8 @@ package
 			add(ball = new Ball());
 			add(p1 = new Player(-1));
 			add(p2 = new Player(1));
+			
+			Audio.play("start");
 		}
 		
 		public override function update (): void

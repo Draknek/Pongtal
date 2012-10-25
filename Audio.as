@@ -6,6 +6,7 @@ package
 	{
 		[Embed(source="audio/bounce.mp3")] public static const Sfx_bounce:Class;
 		[Embed(source="audio/portal.mp3")] public static const Sfx_portal:Class;
+		[Embed(source="audio/start.mp3")] public static const Sfx_start:Class;
 		
 		private static var sounds:Object = {};
 		
