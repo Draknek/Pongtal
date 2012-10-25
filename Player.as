@@ -123,12 +123,15 @@ package
 			
 			if (ball.y >= y1 && ball.y <= y2) {
 				if ((ball.x < x) != (ball.oldX < x)) {
+					var dir:int = (other.x < x) ? 1 : -1;
+					var dir2:int = (ball.vx > 0) ? 1 : -1;
+					
+					if (dir != dir2) return;
+					
 					ball.x += other.x - x;
 					ball.y += other.y - y;
 					ball.oldX = ball.x;
 					ball.oldY = ball.y;
-					
-					var dir:int = (other.x < x) ? 1 : -1;
 					
 					ball.vx += dir * 0.5;
 					
