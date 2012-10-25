@@ -10,6 +10,10 @@ package
 		
 		private static var sounds:Object = {};
 		
+		public static const VOLUMES:Object = {
+			"bounce": 0.3
+		}
+		
 		public static function play (sound:String):void
 		{
 			if (! sounds[sound]) {
@@ -21,7 +25,11 @@ package
 			}
 			
 			if (sounds[sound]) {
-				sounds[sound].play();
+				var volume:Number = 1.0;
+				
+				if (VOLUMES[sound]) volume = VOLUMES[sound];
+				
+				sounds[sound].play(volume);
 			}
 		}
 	}
