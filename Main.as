@@ -2,16 +2,22 @@ package
 {
 	import net.flashpunk.*;
 	import net.flashpunk.debug.*;
+	import net.flashpunk.graphics.*;
 	import net.flashpunk.utils.*;
 	
 	public class Main extends Engine
 	{
 		public static var singlePlayer:Boolean = true;
 		
+		[Embed(source="/usr/share/fonts/truetype/freefont/FreeSansBold.ttf", embedAsCFF="false", fontFamily = "sansfont", fontWeight= "bold")]
+		public static const Font: Class;
+		
 		public function Main () 
 		{
 			super(630, 420, 60, true);
-			FP.world = new Level();
+			Audio.init();
+			Text.font = "sansfont";
+			FP.world = new Menu();
 		}
 		
 		public override function init (): void
