@@ -104,20 +104,22 @@ package
 			
 			if (speedTowards < 0) return;
 			
-			var speedChange:Number = 2;
-			
 			if (Math.abs(dx) < Math.abs(dy)*1.5) {
-				speedChange = 1;
+				var speedBefore:Number = Math.sqrt(ball.vx*ball.vx + ball.vy*ball.vy);
+				
+				ball.vx += dx * speedTowards;
+				ball.vy += dy * speedTowards;
+				
+				var speedAfter:Number = Math.sqrt(ball.vx*ball.vx + ball.vy*ball.vy);
+				
+				ball.vx *= speedBefore / speedAfter;
+				ball.vy *= speedBefore / speedAfter;
 			} else {
 				Audio.play("bounce");
+				
+				ball.vx += dx * speedTowards * 2.05;
+				ball.vy += dy * speedTowards * 2.05;
 			}
-			
-			ball.vx += dx * speedTowards * speedChange;
-			ball.vy += dy * speedTowards * speedChange;
-			
-			/*if (ball.vx * dir >= 0) {
-				ball.vx *= -1;
-			}*/
 		}
 		
 		public function doPortaling (): void
