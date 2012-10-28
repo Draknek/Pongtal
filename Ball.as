@@ -16,7 +16,6 @@ package
 		public var vy: Number = 0;
 		
 		public var r:Number = 12;
-		public var speed:Number = 4;
 		
 		public var spawning:Boolean = false;
 		
@@ -48,17 +47,25 @@ package
 				vx = 1;
 			}
 			
-			vx *= speed;
-			vy = FP.choose(1, -1) * (1 + Math.random()) * speed*0.3;
-			
 			spawning = true;
 			
-			var spawnTime:int = 30;
+			var spawnTime:int = 60;
 			
 			Image(graphic).alpha = 0.0;
 			
 			FP.tween(graphic, {alpha: 1.0}, spawnTime, function ():void {
 				spawning = false;
+				
+				var speed:Number = 4 + Math.random();
+				
+				var target:Player = (vx > 0) ? Level(world).p2 : Level(world).p1;
+				
+				var dx:Number = target.x - x;
+				var dy:Number = target.y + target.height*0.5 - y + FP.choose(-1, 1) * target.height * (1 + Math.random() * 0.5);
+				var dz:Number = Math.sqrt(dx*dx + dy*dy);
+				
+				vx = dx*speed/dz;
+				vy = dy*speed/dz;
 			});
 		}
 		

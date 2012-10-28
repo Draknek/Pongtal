@@ -33,8 +33,6 @@ package
 			
 			y -= height*0.5;
 			
-			y += side*20;
-			
 			initPortal();
 			
 			if (side > 0) {

@@ -6,7 +6,7 @@ package
 	
 	public class Main extends Engine
 	{
-		public static var singlePlayer:Boolean = false;
+		public static var singlePlayer:Boolean = true;
 		
 		public function Main () 
 		{
