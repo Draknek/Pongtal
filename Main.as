@@ -6,6 +6,8 @@ package
 	
 	public class Main extends Engine
 	{
+		public static var singlePlayer:Boolean = false;
+		
 		public function Main () 
 		{
 			super(630, 420, 60, true);

@@ -12,7 +12,7 @@ package
 		public var oldX: Number = 0;
 		public var oldY: Number = 0;
 		
-		public var vx: Number = 0;
+		public var vx: Number = -1;
 		public var vy: Number = 0;
 		
 		public var r:Number = 12;
@@ -42,7 +42,13 @@ package
 			x = oldX = FP.width*0.5;
 			y = oldY = FP.height*0.5;
 			
-			vx = 1 * speed;
+			if (! Main.singlePlayer) {
+				vx = (vx > 0) ? -1 : 1;
+			} else {
+				vx = 1;
+			}
+			
+			vx *= speed;
 			vy = FP.choose(1, -1) * (1 + Math.random()) * speed*0.3;
 			
 			spawning = true;
