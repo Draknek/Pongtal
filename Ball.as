@@ -15,7 +15,7 @@ package
 		public var vx: Number = 0;
 		public var vy: Number = 0;
 		
-		public var r:Number = 10;
+		public var r:Number = 12;
 		public var speed:Number = 4;
 		
 		public var spawning:Boolean = false;

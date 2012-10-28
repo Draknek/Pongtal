@@ -84,8 +84,6 @@ package
 			
 			if (dzSq > ball.r*ball.r) return;
 			
-			Audio.play("bounce");
-			
 			var dz:Number = Math.sqrt(dzSq);
 			
 			dx /= dz;
@@ -96,21 +94,30 @@ package
 			ball.x += dx * overlap;
 			ball.y += dy * overlap;
 			
-			ball.oldX = ball.x;
-			ball.oldY = ball.y;
+			var dir:int = (_x > FP.width*0.5) ? 1 : -1;
+			
+			var dir2:int = (dx < 0) ? 1 : -1;
+			
+			if (dir != dir2) return;
 			
 			var speedTowards:Number = -dx*ball.vx - dy*ball.vy;
 			
 			if (speedTowards < 0) return;
 			
-			ball.vx += dx * speedTowards * 2;
-			ball.vy += dy * speedTowards * 2;
+			var speedChange:Number = 2;
 			
-			var dir:int = (_x > FP.width*0.5) ? 1 : -1;
-			
-			if (ball.vx * dir >= 0) {
-				ball.vx *= -1;
+			if (Math.abs(dx) < Math.abs(dy)*1.5) {
+				speedChange = 1;
+			} else {
+				Audio.play("bounce");
 			}
+			
+			ball.vx += dx * speedTowards * speedChange;
+			ball.vy += dy * speedTowards * speedChange;
+			
+			/*if (ball.vx * dir >= 0) {
+				ball.vx *= -1;
+			}*/
 		}
 		
 		public function doPortaling (): void
